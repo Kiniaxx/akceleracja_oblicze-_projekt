@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/Public/CLion/AO-projekt/cmake-build-debug",
+  "command": "C:\\Users\\Pchełka\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\g++.exe -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles\\AO_projekt.dir\\main.cpp.obj -c C:\\Users\\Public\\CLion\\AO-projekt\\main.cpp",
+  "file": "C:/Users/Public/CLion/AO-projekt/main.cpp",
+  "output": "C:/Users/Public/CLion/AO-projekt/cmake-build-debug/CMakeFiles/AO_projekt.dir/main.cpp.obj"
+}
+]
