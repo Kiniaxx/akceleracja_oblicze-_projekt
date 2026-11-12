@@ -9,7 +9,12 @@ using namespace std;
 using namespace std::chrono;
 
 const string all_chars = "abcdefghijklmnopqrstuvwxyz";
-const int max_len = 8;
+const string all_nums = "1234567890";
+const string special_chars = "!@#$%^&*()_+{}[]:;'?.,<>?";
+
+const string full_charset = all_chars + all_nums + special_chars;
+
+const int max_len = 5;
 
 const uint32_t S[64] = {
     7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
@@ -123,7 +128,7 @@ bool brute_force(char* current_guess, int position, int length, const uint8_t* t
         return false;
     }
 
-    for (char c : all_chars) {
+    for (char c : full_charset) {
         current_guess[position] = c;
         if (brute_force(current_guess, position + 1, length, target_hash)) {
             return true;
@@ -136,16 +141,19 @@ int main() {
     int pwd_length = max_len;
     string secret_password = "";
 
-    cout << "Podaj haslo (max dlugosc: " << pwd_length << "): ";
-    cin >> secret_password;
+    // cout << "Podaj haslo (max dlugosc: " << pwd_length << "): ";
+    // cin >> secret_password;
 
-    /* losowanie hasła
-    for (int i = 0; i < pwd_length; ++i) {
-    secret_password += all_chars[dist(gen)];
-    }
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(0, full_charset.size() - 1);
 
-    cout << "Wgenerowane haslo: " << secret_password << endl;
-    */
+      for (int i = 0; i < pwd_length; ++i) {
+      secret_password += full_charset[dist(gen)];
+      }
+
+      cout << "Wgenerowane haslo: " << secret_password << endl;
+
 
     uint8_t target_hash[16];
     md5((const uint8_t*)secret_password.c_str(), secret_password.length(), target_hash);
