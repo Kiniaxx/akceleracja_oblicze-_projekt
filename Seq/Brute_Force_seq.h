@@ -3,10 +3,10 @@
 #include <cstring>
 #include <string>
 
-#include "Consts.h"
+#include "../Consts.h"
 #include "MD5_seq.h"
 
-static bool brute_force(char* current_guess, int position, int length, const uint8_t* target_hash) {
+static bool brute_force_seq(char* current_guess, int position, int length, const uint8_t* target_hash) {
     if (position == length) {
         uint8_t current_hash[16];
 
@@ -20,7 +20,7 @@ static bool brute_force(char* current_guess, int position, int length, const uin
 
     for (const char c : full_charset) {
         current_guess[position] = c;
-        if (brute_force(current_guess, position + 1, length, target_hash)) {
+        if (brute_force_seq(current_guess, position + 1, length, target_hash)) {
             return true;
         }
     }
